@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import axios, { AxiosError } from 'axios'; // Import AxiosError type
+import axios from 'axios';
 
 const CatApiRandomBreed = () => {
-  const [randomBreed, setRandomBreed] = useState<any>(null); // Specify type as any for initial state
-  const [error, setError] = useState<string | null>(null); // Specify type as string or null for error
+  const [randomBreed, setRandomBreed] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchRandomBreed = async () => {
     try {
@@ -12,12 +12,8 @@ const CatApiRandomBreed = () => {
       const randomIndex = Math.floor(Math.random() * breeds.length);
       const randomBreedData = breeds[randomIndex];
       setRandomBreed(randomBreedData);
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      } else {
-        setError('An unknown error occurred'); // Fallback error message
-      }
+    } catch (error: any) { // Specify the type of 'error' as 'any'
+      setError(error.message);
     }
   };
 
