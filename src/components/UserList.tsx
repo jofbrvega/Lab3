@@ -1,11 +1,13 @@
 import React from 'react';
 
+export interface User {
+  name: string;
+  email: string;
+  breed: string;
+}
+
 interface UserProps {
-  users: {
-    name: string;
-    email: string;
-    breed: string; // Add breed property to the user object
-  }[];
+  users: User[];
 }
 
 const UserList: React.FC<UserProps> = ({ users }) => {
