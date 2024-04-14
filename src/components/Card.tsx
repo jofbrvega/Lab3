@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from "./Card";
-import Image from "./Image";
 
 interface User {
   name: string;
