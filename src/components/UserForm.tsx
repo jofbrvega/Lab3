@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function UserForm({ onUserAdd }: any) {
+interface UserFormProps {
+  onUserAdd: (user: User) => void;
+}
+
+function UserForm({ onUserAdd }: UserFormProps) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null); // Specify type as string or null
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     try {
@@ -15,7 +19,7 @@ function UserForm({ onUserAdd }: any) {
       const randomIndex = Math.floor(Math.random() * breeds.length);
       const randomBreed = breeds[randomIndex];
       onUserAdd({ name, email, breed: randomBreed.name }); // Add random cat breed to user object
-    } catch (error) {
+    } catch (error: any) { // Specify the type of 'error' as 'any'
       setError(error.message);
     }
   };
